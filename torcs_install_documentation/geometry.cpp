@@ -29,7 +29,7 @@
 #define isnan _isnan
 #endif
 
-using namespace std
+using namespace std;
 
 Vector::Vector(int N_, enum BoundsCheckingStatus check)
 {
