@@ -150,7 +150,7 @@ def process(img):
 	# optimized for 200x200 0.432s -> 0.314s -> 0.156s -> 0.147s -> 0.136s -> 0.132s -> 0.118
 	########
 
-	return img, highlight, blur, green
+	return green
 
 
 def plot_process(imgs):
