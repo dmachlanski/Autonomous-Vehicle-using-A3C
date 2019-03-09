@@ -8,7 +8,7 @@ class Vehicle:
         return self
 
     def __exit__(self, type, value, traceback):
-        self.ser.close()
+        self.ser.close()    
 
     def move(self, speed, turn):
         """ Sets vehicle's speed and steering angle. Both variables are in the range of [0, 500].
