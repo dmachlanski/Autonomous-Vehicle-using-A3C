@@ -10,6 +10,23 @@ class Vehicle:
     def __exit__(self, type, value, traceback):
         self.ser.close()    
 
+    def move_alt(self, cmd, speed, delta_turn):
+        if(len(cmd) != 3):
+            print("Expected 3 arguments: forward, left and right")
+            return
+        
+        speed_val = 250
+        turn_val = 250
+        forward, left, right = cmd
+        
+        if(forward == '1'):
+            speed_val = speed
+        if(left == '1'):
+            turn_val -= delta_turn
+        elif(right == '1'):
+            turn_val += delta_turn
+        self.move(speed_val, turn_val)
+
     def move(self, speed, turn):
         """ Sets vehicle's speed and steering angle. Both variables are in the range of [0, 500].
             Speed:

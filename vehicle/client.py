@@ -1,21 +1,21 @@
 import socket
-import numpy as np
-import matplotlib.pyplot as plt
 import pickle
 
-#host = '172.20.10.4'
-host = '127.0.0.1'
-port = 6666
+class Client:
+    def __init__(self, host='127.0.0.1', port=6666):
+        self.host = host
+        self.port = port
 
-with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as client_socket:
-    client_socket.connect((host, port))
-    client_socket.sendall(b"image")
-    data = client_socket.recv(230400)
+    def request(self, msg):
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as client_socket:
+            client_socket.connect((self.host, self.port))
+            client_socket.sendall(msg.encode('ascii'))
+            return client_socket.recv(230400)
 
-    print(f"Received data from the server")
+    def get_image(self):
+        data = self.request('image')
+        return pickle.loads(data)
 
-    img = pickle.loads(data)
-    print(img)
-    print(img.shape)
-    plt.imshow(img)
-    plt.show()
+    def set_control(self, forward, left, right):
+        msg = f'{forward},{left},{right}'
+        self.request(msg)
