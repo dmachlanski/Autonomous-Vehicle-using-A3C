@@ -21,10 +21,15 @@ preprocess = transforms.Compose([
 
 def feature_vec(img):
     # temp = np.rollaxis(img, 0, 3)
+
     temp = np.uint8(img)
+
     img_pil = Image.fromarray(temp)
+
     img_tensor = preprocess(img_pil)
+    print("four") 
     img_tensor_ = img_tensor.unsqueeze_(0)
+    print("five") 
     # print(model)
     return model.features(img_tensor_).view(-1)
 

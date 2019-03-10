@@ -5,11 +5,12 @@ import torch.multiprocessing as mp
 
 from utils import v_wrap, set_init, push_and_pull, record
 from shared_adam import SharedAdam
-import gym
+# import gym
 import os
 os.environ["OMP_NUM_THREADS"] = "1"
 
 from model import feature_vec
+from server import step, reset
 
 UPDATE_GLOBAL_ITER = 10
 GAMMA = 0.9
@@ -18,7 +19,7 @@ MAX_EP = 40
 
 # game_name = 'MountainCar-v0'
 game_name = 'CartPole-v0'
-env = gym.make(game_name)
+# env = gym.make(game_name)
 
 N_S = 25088
 # env.observation_space.shape[0]
@@ -75,22 +76,28 @@ class Worker(mp.Process):
         self.gnet, self.opt = gnet, opt
         # local network
         self.lnet = Net(N_S, N_A)
-        self.env = gym.make(game_name).unwrapped
+        # self.env = gym.make(game_name).unwrapped
 
     def run(self):
         total_step = 1
         while self.g_ep.value < MAX_EP:
-            s = self.env.reset()
+            s = reset()
+            print("img_array", s)
+            s = feature_vec(s)
+            print("feat", s)
+
+            # s = self.env.reset()
             # feature_vec
-            print("s_reset", s)
             buffer_s, buffer_a, buffer_r = [], [], []
             ep_r = 0.
             while True:
-                if self.name == 'w0':
-                    self.env.render()
+                # if self.name == 'w0':
+                    # self.env.render()
                     # feature_vec
-                a = self.lnet.choose_action(v_wrap(s[None, :]))
-                s_, r, done, _ = self.env.step(a)
+                a = self.lnet.choose_action(s)
+                # a = self.lnet.choose_action(v_wrap(s[None, :]))
+                s_, r, done = step(a)
+                # s_, r, done, _ = self.env.step(a)
                 # feature_vec
                 print("a", a)
                 print("s_", s_)
