@@ -2,6 +2,7 @@ import socket
 from camera import Camera
 from vehicle import Vehicle
 import pickle
+import time
 
 class Server:
     def __init__(self, host='127.0.0.1', port=6666, vehicle_port='/dev/ttyUSB0', baudrate=115200, img_width=100, img_height=100,
@@ -47,10 +48,25 @@ class Server:
                                     finally:
                                         conn.sendall(retMsg)
 
+def get_ip():
+    with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
+        try:
+            s.connect(("8.8.8.8", 80))
+            ip = s.getsockname()[0]
+        except:
+            ip = '127.0.0.1'
+    return ip
+
 if __name__ == "__main__":
     # Windows
     #port = 'COM3'
     # Linux (default)
     #port = '/dev/ttyUSB0'
-    server = Server()
+
+    # Wait for the network to connect
+    time.sleep(10)
+
+    ip = get_ip()
+
+    server = Server(ip)
     server.start()
