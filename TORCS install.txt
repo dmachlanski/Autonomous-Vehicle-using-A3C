@@ -1,0 +1,28 @@
+sudo apt-get update
+# type y to everything
+sudo apt-get upgrade
+# type y to everything
+sudo apt-get install torcs
+sudo apt-get install thunar # for map
+sudo apt-get install x11-apps # needed for GUI on CLI using windows
+sudo thunar /usr/share/games/torcs/tracks/
+
+#move the ce903 map to ./roads/ 
+
+alias torcs='export DISPLAY=localhost:0.0; torcs'
+
+
+xauth list # for users example uses user 10
+
+ssh root@kallah.co DISPLAY=:10 nohup torcs
+
+ssh -X kallah.co
+
+#server
+sudo nano ~/.bashrc
+#add export DISPLAY=:0
+
+
+client 
+sudo nano ~/.bashrc
+#add export DISPLAY=localhost:0
