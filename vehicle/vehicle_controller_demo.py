@@ -68,7 +68,7 @@ def main():
     with Vehicle(port, baudrate) as car:
         while running:
             j.dispatch_events()
-            #car.move(speed, steering)
+            car.move(speed, steering)
             print(f'Speed: {speed}, turn: {steering}')
             time.sleep(0.3)
 
