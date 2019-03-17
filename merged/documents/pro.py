@@ -117,20 +117,20 @@ def rm_line(img, height, width):
 
 
 def process(img):
-	# set height and width
+	# set height and width	
+	
+	# convert to float32 for cv2
+	img = img.astype(np.float32)
+
+	img = cv2.resize(img, (200, 200))
+	
 	height = img.shape[0]
 	width = img.shape[1]
-	
-	img = img.astype(np.float32)
-		
-	# starts a timer
-	import time
-	start = time.time()
 
 	strength = 50
 
 	img[np.where((img < [strength, strength, strength]).all(axis=2))] = [0, 255, 0]
-
+	
 	# create blur kernel
 	blur_size = 5
 	kernel = np.ones((blur_size, blur_size), np.float32) / (blur_size * blur_size)
@@ -138,13 +138,12 @@ def process(img):
 	# blur image (Only use blur if needed. Lower resolution need less blur. Changing kernel can help too.)
 	img = cv2.filter2D(img, -1, kernel)
 
-
 	# removes the green top of the image
 	img, top = rm_green(img, height, width)                                             # slow (cpp) = 0.148861885
-
-	# ends the timer
-	end = time.time()
-
+	
+	# convert back to int
+	img = img.astype(np.int)
+	
 	#print(end-start)
 	########
 	# optimization notes:

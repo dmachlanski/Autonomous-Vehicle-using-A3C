@@ -82,7 +82,7 @@ class Worker(mp.Process):
         total_step = 1
         while self.g_ep.value < MAX_EP:
             s = reset()
-            print("img_array", s)
+            #print("img_array", s)
             s = feature_vec(s)
             print("feat", s)
 

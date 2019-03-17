@@ -7,6 +7,7 @@ import torch
 from helper import load_stuff
 
 is_cuda = torch.cuda.is_available()
+is_cuda = False
 
 # densenet121
 model = models.vgg16(pretrained=True)
@@ -33,12 +34,10 @@ def feature_vec(img):
     temp = np.uint8(img)
 
     img_pil = Image.fromarray(temp)
-
+    print("infinite loop occurs at at line 38 in model.py, \n'img_tensor = preprocess(img_pil)'")
     img_tensor = preprocess(img_pil)
-    print("four") 
+    print("eroor resolved") 
     img_tensor_ = img_tensor.unsqueeze_(0)
-    print("five") 
-    # print(model)
     return model.features(img_tensor_).view(-1)
 
 

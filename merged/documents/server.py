@@ -5,7 +5,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import sys
 import csv
-
+from pro import process
 	
 	
 def connect(PORT):
@@ -60,10 +60,10 @@ def format_img(img):
 
 	np.asarray(RGB)
 	RGB = np.flip(RGB, 0)
-	# img = process(img) <- pre-processed images here
-	#plt.imshow(RGB)
+	img = process(RGB) #<- pre-processed images here
+	#plt.imshow(img)
 	#plt.show()
-	return RGB
+	return img
 
 import pickle
 def dump(filename="Untitled", data=None):	
