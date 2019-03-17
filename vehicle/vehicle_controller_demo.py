@@ -10,6 +10,7 @@ import sys
 
 def main():
     # Default values
+    global steering, speed, stick_deadzone, running, last_l_stick_x, last_left_trigger, last_right_trigger
     steering = 250
     speed = 250
     stick_deadzone = 0.15
@@ -67,7 +68,7 @@ def main():
     with Vehicle(port, baudrate) as car:
         while running:
             j.dispatch_events()
-            car.move(speed, steering)
+            #car.move(speed, steering)
             print(f'Speed: {speed}, turn: {steering}')
             time.sleep(0.3)
 
