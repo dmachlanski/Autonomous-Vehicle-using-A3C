@@ -37,6 +37,66 @@ def plot_image(image, name="", plt_show=True):
 	if plt_show == True:
 		plt.show()
 
+def canny_fill(img, height, width, bottom, threshold=0):
+	"""
+	Fills the space between two lines on a vertical plane
+
+	Example: If you have an image:
+	OOOOOOOOOOO
+	###########
+	OOOOOOOOOOO
+	###########
+	OOOOOOOOOOO
+
+	where
+	# represents within threshold
+	O represents any color
+	@ represents white
+
+	then the output image would be
+	OOOOOOOOOOO
+	###########
+	###########
+	###########
+	OOOOOOOOOOO
+
+	:param img: the image to process
+	:param height: the height of the input image
+	:param width: the width of the input image
+	:param bottom: The highest point of search space
+	:param threshold: a threshold that say how big a value can be before its detected as a white pixel, Default: 0
+	:return: the processed image
+	"""
+
+	# create a copy of image to avoid editing the original image
+	img = np.copy(img)
+
+	for hor in range(width):
+		found = False
+		unfound = False
+
+		for vert in range(bottom, height):
+
+			pxl = img[vert][hor]
+
+			# if a white pixel has been found in this column but it has not found a second pixel, make current pixel white
+			if found:
+				img[vert][hor] = 255
+
+
+			# if current pixel is bigger than the set threshold
+			if pxl > threshold:
+				# then check if it is done
+				if found & unfound :
+					break
+				# if not done then check if it is the first white pixel found
+				elif (not found):
+					found = True
+
+			# lastly check if a second white pixel has been found to avoid filling all the way to the bottom of image
+			elif (pxl == 0) & (found):
+				unfound = True
+	return img
 
 def rm_green(img, height, width, r_threshold=80, g_threshold=90, b_threshold=80):
 	"""
@@ -150,7 +210,7 @@ def process(img):
 	# optimized for 200x200 0.432s -> 0.314s -> 0.156s -> 0.147s -> 0.136s -> 0.132s -> 0.118
 	########
 
-	return green
+	return img, highlight, blur, green
 
 
 def plot_process(imgs):
