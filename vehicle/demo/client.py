@@ -14,7 +14,7 @@ class Client:
 
     def get_image(self):
         data = self.request('image')
-        return pickle.loads(data)
+        return pickle.loads(data, encoding='latin1')
 
     def set_control(self, forward, left, right):
         msg = f'{int(forward)},{int(left)},{int(right)}'
