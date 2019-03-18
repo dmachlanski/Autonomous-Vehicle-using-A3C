@@ -60,7 +60,8 @@ def main():
             #steering = 250
             #speed = 250
 
-        if button == 10:
+        if button == 15:
+            # Button 15 = "X" button
             img = client.get_image()
             cv2.imwrite(f'img{img_count}.png', img)
             img_count += 1
