@@ -2,16 +2,11 @@
 NEEDS TO BE TESTED
 """
 
-#from vehicle import Vehicle
 import time
 import xinput
 import sys
-import socket
-import keyboard
 from client import Client
-import matplotlib.pyplot as plt
-import time
-
+import cv2
 
 def main():
     # Default values for analog input
@@ -31,14 +26,9 @@ def main():
     stop = False
     
     running = True
+    img_count = 1
 
     # Networking
-    # Windows
-    port = 'COM3'
-    # Linux
-    # port = '/dev/ttyUSB0'
-    baudrate = 115200
-    
     client = Client('192.168.137.130', 7777)
 
     # Controller initialisation
@@ -56,7 +46,7 @@ def main():
         # For analog input
         #global steering, speed, running
         
-        global left, right, forward, stop, running
+        global left, right, forward, stop, running, img_count
         
         if button == 5:
             # Button 5 = "Start" button
@@ -69,6 +59,11 @@ def main():
             # For analog input
             #steering = 250
             #speed = 250
+
+        if button == 10:
+            img = client.get_image()
+            cv2.imwrite(f'img{img_count}.png', img)
+            img_count += 1
 
     @j.event
     def on_axis(axis, value):
@@ -114,11 +109,8 @@ def main():
             #steering = stick_to_steering(last_l_stick_x, stick_deadzone)
 
     # Running loop
-    #with Vehicle(port, baudrate) as car:
     while running:
         j.dispatch_events()
-        #car.move(speed, steering)
-        #print(f'Speed: {speed}, turn: {steering}')
         print(f"Left:{left}, Right:{right}, Forward:{forward}, Stop:{stop}")
         client.set_control(forward, left, right)
         time.sleep(0.3)

@@ -10,11 +10,11 @@ class Client:
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as client_socket:
             client_socket.connect((self.host, self.port))
             client_socket.sendall(msg.encode('ascii'))
-            return client_socket.recv(230400)
+            return client_socket.recv(800000)
 
     def get_image(self):
         data = self.request('image')
-        return pickle.loads(data)
+        return pickle.loads(data, encoding='latin1')
 
     def set_control(self, forward, left, right):
         msg = f'{forward},{left},{right}'

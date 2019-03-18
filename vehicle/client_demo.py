@@ -3,9 +3,11 @@ import keyboard
 from client import Client
 import matplotlib.pyplot as plt
 import time
+import cv2
 
 keep_running = True
-client = Client()
+client = Client('192.168.137.130', 7777)
+img_count = 1
 
 def forward():
     global client
@@ -26,10 +28,10 @@ def forward_and_right():
     global client
     client.set_control(1,0,1)
 def image():
-    global client
+    global client, img_count
     img = client.get_image()
-    plt.plot(img)
-    plt.show()
+    cv2.imwrite(f'img{img_count}.png', img)
+    img_count += 1
 def finish():
     global keep_running
     keep_running = False
