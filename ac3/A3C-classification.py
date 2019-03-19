@@ -15,7 +15,7 @@ from server import step, reset
 UPDATE_GLOBAL_ITER = 10
 GAMMA = 0.9
 MAX_EP = 40
-# MAX_EP = 4000
+# ---------------------------------Import all req. models
 
 # game_name = 'MountainCar-v0'
 game_name = 'CartPole-v0'
@@ -26,8 +26,9 @@ N_S = 25088
 N_A = 3
 # env.action_space.n
 
+# ---------------------------------Global variable
 
-class Net(nn.Module):
+class Net(nn.Module): # neural network
     def __init__(self, s_dim, a_dim):
         super(Net, self).__init__()
         self.s_dim = s_dim
@@ -67,7 +68,7 @@ class Net(nn.Module):
         return total_loss
 
 
-class Worker(mp.Process):
+class Worker(mp.Process): # slave class
     def __init__(self, gnet, opt, global_ep, global_ep_r, res_queue, name):
         super(Worker, self).__init__()
         self.name = 'w%i' % name
@@ -137,9 +138,9 @@ if __name__ == "__main__":
 
     # parallel training
     workers = [Worker(gnet, opt, global_ep, global_ep_r, res_queue,
-               i) for i in range(1)]
-            #    i) for i in range(mp.cpu_count())]
+               i) for i in range(mp.cpu_count())]
     [w.start() for w in workers]
+
     res = []                    # record episode reward to plot
     while True:
         r = res_queue.get()
@@ -148,8 +149,10 @@ if __name__ == "__main__":
         else:
             break
     [w.join() for w in workers]
+    # run slaves
 
     import matplotlib.pyplot as plt
+    # plot the reward
     plt.plot(res)
     plt.ylabel('Moving average ep reward')
     plt.xlabel('Step')
