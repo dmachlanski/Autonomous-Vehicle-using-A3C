@@ -1,5 +1,5 @@
 # PC - installation instructions
-All the code here should be copied to the machine where RL model is supposed to be running. Once the files are copied, run the 'install' file or manually execute commands that live inside to install all the dependencies necessary to run the code.
+All the code here should be copied to the machine where RL model is supposed to be running. Once the files are copied, run the 'install' file or manually execute commands that live inside to install all the dependencies necessary to run the code. A pre-requisite is a Python 3.x installation.
 
 There are two demonstration files prepared to use either an Xbox controller or a keyboard to steer the vehicle and get images from its point of view via a network. Before running a demo, you have to set up everything on the Odroid first (network, run the server script) and ensure both devices can 'see' each other in a network. Use 'ping' command to do a quick test.
 
