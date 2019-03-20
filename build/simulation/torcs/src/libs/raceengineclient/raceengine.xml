@@ -2,7 +2,7 @@
 <!-- 
     file        : raceengine.xml
     created     : Sat Nov 16 19:39:26 CET 2002
-    copyright   : (C) 2002 by Eric Espié                         
+    copyright   : (C) 2002 by Eric EspiÃ©                         
     email       : Eric.Espie@torcs.org   
     version     : $Id: raceengine.xml,v 1.5 2005/02/01 15:55:52 berniw Exp $                                  
 -->
@@ -25,7 +25,7 @@
   <section name="Movie Capture">
     <attstr name="enable capture" in="yes,no" val="yes"/>
     <attnum name="fps" val="30"/>
-    <attstr name="output directory" val="/home/kallah/Downloads/captures"/>
+    <attstr name="output directory" val="~/Downloads/captures"/>
   </section>
 
 </params>
