@@ -40,6 +40,8 @@ using namespace std;
 
 static tTrack	*curTrack;
 
+string const HOME = getenv("HOME") ? getenv("HOME") : ".";
+
 static void initTrack(int index, tTrack* track, void *carHandle, void **carParmHandle, tSituation *s); 
 static void newrace(int index, tCarElt* car, tSituation *s); 
 static void drive(int index, tCarElt* car, tSituation *s); 
@@ -112,7 +114,8 @@ drive(int index, tCarElt* car, tSituation *s)
      * car->_clutchCmd 
      */ 
 	
-	ifstream instructions_file ("/home/kallah/Documents/drive_instructions.csv");
+	
+	ifstream instructions_file (HOME + "/tesla/drive_instructions.csv");
     string in;
     bool no_instructions = true;
     float accel, steer;
