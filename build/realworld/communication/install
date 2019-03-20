@@ -1,2 +1,3 @@
-# XInput controller
-    pip install pyglet
+# Install dependencies
+
+pip install pyglet opencv-python keyboard==0.11.0

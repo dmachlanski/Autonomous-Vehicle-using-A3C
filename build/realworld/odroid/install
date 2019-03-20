@@ -1,0 +1,3 @@
+# Install dependencies
+
+pip install opencv-python pyserial
