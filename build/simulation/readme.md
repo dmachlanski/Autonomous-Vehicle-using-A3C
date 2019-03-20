@@ -1,10 +1,10 @@
-#How to use the simulator
+# How to use the simulator
 
 Firstly use the install instructions in the install file to correctly install the program. 
 
 The program is divided into two seperate programs. A server and a simulator.
 
-##Server
+## Server
 
 To start a server, open a Terminal window and use
 
@@ -15,7 +15,7 @@ python3 A3C-classification.py
 
 This will now wait for the simulator to start
 
-##Simulator
+## Simulator
 
 To start the simulator, open a new Terminal window and use
 
