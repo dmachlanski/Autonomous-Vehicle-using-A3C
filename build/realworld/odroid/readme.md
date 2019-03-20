@@ -16,7 +16,7 @@ python server.py
 
 After 60 seconds, the server should start listening for incoming requests from clients.
 
-## Running code automatically (Linux)
+## Running code automatically
 To start the code automatically at the startup of the system copy the following files to /bin:
 - server.py
 - vehicle.py
