@@ -27,7 +27,7 @@ public:
 	
 	void close_connection();
 
-	char* path = "/home/kallah/torcs/screen_img.csv";
+	char* path = "~/torcs/screen_img.csv";
 	int width, height;
 	int client, portnum;
 	int bufsize = 1024;
