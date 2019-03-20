@@ -7,9 +7,9 @@ Once everything is set, open a demo file you are about to run and find a 'Client
 
 ## Controller demo
 The controller demo provides an opportunity to steer a vehicle via an Xbox controller. To start the demo, run the following command in a command prompt while being inside the 'communication' directory:
-'''shell
+```shell
 python controller_demo.py
-'''
+```
 
 The usage of an XInput controller (e.g. XBox 360 controller) requires DirectX, which is only available on Windows. The necessary software will automatically be installed by Windows 10 when connecting the controller to the machine. With earlier versions of Windows, DirectX might have to be downloaded manually. Download the version that is appropriate for your version of Windows. The library reading the input also requires the software "Pyglet". Command line code to install it can be found in the "install" file.
 
@@ -23,9 +23,9 @@ The usage of an XInput controller (e.g. XBox 360 controller) requires DirectX, w
 
 ## Keyboard demo
 This demo works similarly to the contorller one but this one utilises a keyboard instead to control the vehicle. To start the demo, run the following command in a command prompt while being inside the 'communication' directory:
-'''shell
+```shell
 python keyboard_demo.py
-'''
+```
 
 ### How to use the keyboard
 - 'W': move forwards.
