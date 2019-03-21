@@ -1,3 +1,4 @@
+# Credit: Original implementation was based on https://github.com/ikostrikov/pytorch-a3c
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
