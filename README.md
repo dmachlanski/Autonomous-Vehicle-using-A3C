@@ -11,5 +11,5 @@ Our implementation is based on the following sources:
 - https://morvanzhou.github.io/
 
 ### XBox controller
-The code for getting input from the controller was acquired from:
+The code for getting input from the controller (xinput.py) was acquired from:
 - https://github.com/r4dian/Xbox-360-Controller-for-Python
